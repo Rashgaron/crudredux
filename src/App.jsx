@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
-        <Header />
+        <Header className="mb-4" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={Productos} />
