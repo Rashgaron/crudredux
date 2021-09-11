@@ -1,49 +1,24 @@
 {
   "productos": [
     {
-      "id": 2,
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
+      "nombre": "tosecita",
+      "precio": "18",
+      "id": 13
     },
     {
-      "nombre": "Jugo de Fresa",
-      "precio": "200",
-      "id": 5
+      "nombre": "asdasf",
+      "precio": 2,
+      "id": 14
     },
     {
-      "nombre": "Manzana",
+      "nombre": "dafs",
       "precio": 3,
-      "id": 6
+      "id": 15
     },
     {
-      "nombre": "Manzana",
-      "precio": 3,
-      "id": 7
-    },
-    {
-      "nombre": "Manga",
-      "precio": 8,
-      "id": 8
-    },
-    {
-      "nombre": "mangaka",
-      "precio": 10,
-      "id": 9
-    },
-    {
-      "nombre": "mangaka",
-      "precio": 10,
-      "id": 10
-    },
-    {
-      "nombre": "telefono",
-      "precio": 200,
-      "id": 11
-    },
-    {
-      "nombre": "muñeco",
-      "precio": 5,
-      "id": 12
+      "nombre": "ads",
+      "precio": 2,
+      "id": 16
     }
   ]
 }

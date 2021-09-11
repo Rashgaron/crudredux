@@ -14,9 +14,21 @@ const Productos = () => {
     const cargarProductos = () => dispatch(descargarProductosAction());
 
     const productos = useSelector(state => state.productos.productos);
+    const error = useSelector(state => state.productos.error)
+    const cargando = useSelector(state => state.productos.loading);
     return(
         <>
             <h2 className="text-center my-5">Listado de Productos</h2>
+            {error
+            ?
+            <p className="font-weight-bold alert alert-danger text-center">
+                Hubo un error
+            </p>
+            :null}
+            {cargando
+            ?
+            <p>Cargando ...</p>
+            :null}
 
             <table className="table table-stripe">
                 <thead className="bg-primary table-dark">
