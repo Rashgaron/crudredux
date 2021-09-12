@@ -5,8 +5,8 @@ import { crearNuevoProductoAction } from "../actions/productoActions";
 const NuevoProducto = ({history}) => {
   
   //state del componente
-  const [nombre, guardarNombre] = useState("");
-  const [precio, guardarPrecio] = useState(0);
+  const [name, guardarNombre] = useState("");
+  const [price, guardarPrecio] = useState(0);
 
   // utilizar useDispatch y useSelector para acceder al state
   const dispatch = useDispatch();
@@ -24,15 +24,15 @@ const NuevoProducto = ({history}) => {
 
     //Validar formulario
 
-    if (nombre.trim === "" || precio <= 0) return;
+    if (name.trim === "" || price <= 0) return;
 
     // si no hay errores
 
     // crear el nuevo producto
 
     agregarProducto({
-      nombre,
-      precio,
+      name: name,
+      price: price,
     });
 
     //redireccionar
@@ -56,7 +56,7 @@ const NuevoProducto = ({history}) => {
                   className="form-control"
                   placeholder="Nombre Producto"
                   name="nombre"
-                  value={nombre}
+                  value={name}
                   onChange={(e) => guardarNombre(e.target.value)}
                 />
               </div>
@@ -67,7 +67,7 @@ const NuevoProducto = ({history}) => {
                   className="form-control"
                   placeholder="Precio Producto"
                   name="precio"
-                  value={precio}
+                  value={price}
                   onChange={(e) => guardarPrecio(Number(e.target.value))}
                 />
               </div>

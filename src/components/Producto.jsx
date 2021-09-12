@@ -5,7 +5,7 @@ import {eliminarProductoAction, obtenerProductoEditar} from '../actions/producto
 import Swal from 'sweetalert2'
 
 const Producto = ({producto}) => {
-    const {  nombre, precio, id } = producto;
+    const { name, price, id } = producto;
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -43,8 +43,8 @@ const Producto = ({producto}) => {
 
     return ( 
         <tr>
-            <td>{nombre}</td>
-            <td><span className="font-weight-bold">$ {precio}</span></td>
+            <td>{name}</td>
+            <td><span className="font-weight-bold">$ {price}</span></td>
             <td className="acciones">
                 <button 
                     onClick={()=>redireccionarEdicion(producto)}

@@ -47,7 +47,6 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                productos: [...state.productos, action.payload]
             }
         case COMENZAR_DESCARGA_PRODUCTOS_EXITO:
             return{

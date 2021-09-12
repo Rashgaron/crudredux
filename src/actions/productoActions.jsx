@@ -50,7 +50,7 @@ export function descargarProductosAction(){
   return async (dispatch) => {
     dispatch(descargarProductos(true));
     try{
-      const response = await clienteAxios.get("productos");
+      const response = await clienteAxios.get("products");
       const products = response.data;
       dispatch(descargarProductosExito(products));
     }catch(error){
@@ -83,7 +83,7 @@ export function crearNuevoProductoAction(producto) {
 
     try {
       //insertar en la API
-      await clienteAxios.post("productos", producto);
+      await clienteAxios.post("products",producto);
       //si todo sale bien, actualizar el state
       dispatch(agregarProductoExito(producto));
       //Alerta
@@ -135,7 +135,7 @@ const obtenerProductoAction = (producto)=>({
 export function editarProductoAction(producto){
   return async dispatch =>{
     try{
-      await clienteAxios.put(`productos/${producto.id}`, producto)
+      await clienteAxios.put(`products/${producto.id}`, producto)
       dispatch( editarProductoExito(producto) )
     }catch(error){
       dispatch( editarProductoError() )
