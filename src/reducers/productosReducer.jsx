@@ -9,7 +9,9 @@ import {
     ELIMINAR_PRODUCTO_EXITO,
     ELIMINAR_PRODUCTO_ERROR,
     OBTENER_PRODUCTO_EDITAR,
-    EDITAR_PRODUCTO_EXITO
+    EDITAR_PRODUCTO_EXITO,
+    EDITAR_PRODUCTO_ERROR,
+    COMENZAR_EDICION_PRODUCTO
 } from '../types'
 
 
@@ -36,6 +38,8 @@ export default function (state = initialState, action) {
         case AGREGAR_PRODUCTO_ERROR:
         case COMENZAR_DESCARGA_PRODUCTOS_ERROR:
         case ELIMINAR_PRODUCTO_ERROR:
+        case EDITAR_PRODUCTO_ERROR:
+        
             return{
                 ...state,
                 loading:false,
@@ -69,13 +73,13 @@ export default function (state = initialState, action) {
         case EDITAR_PRODUCTO_EXITO:
             return{
                 ...state,
-                productos: state.productos.map(x => {
-                    if(x.id === action.payload.id){
-                        x.nombre = action.payload.nombre;
-                        x.precio = action.payload.precio;
-                    }
-                    return x;
-                }),
+                productos: state.productos.map(x => 
+                    x.id === action.payload.id 
+                    ?
+                        action.payload
+                    : 
+                        x
+                ),
                 productoeditar:null
             }
         default:

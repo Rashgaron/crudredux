@@ -1,50 +1,16 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import {eliminarProductoAction, obtenerProductoEditar} from '../actions/productoActions'
-import Swal from 'sweetalert2'
 
+import useProducto from './useProducto';
 const Producto = ({producto}) => {
-    const { name, price, id } = producto;
 
-    const dispatch = useDispatch();
-    const history = useHistory();
+    const { nombre, precio, id } = producto;
 
-    const eliminarProducto = ()=>{
-        // Preguntar al usuario 
-
-        Swal.fire({
-            title:'Estas seguro?',
-            text: 'No podras revertir la accion',
-            icon:'warning',
-            showCancelButton:true,
-            confirmButtonColor:'#3085d6',
-            cancelButtonColor:'#d33',
-            confirmButtonText:'Si, borralo'
-        }).then(res => {
-            if(res.isConfirmed){
-                Swal.fire(
-                    'Eliminado!',
-                    'Tu producto ha sido eliminado',
-                    'success'
-                );
-                dispatch(eliminarProductoAction(id));
-            }
-        })
-
-    }
-
-    //funcion que redirige de forma programada
-    const redireccionarEdicion = producto =>{
-        dispatch( obtenerProductoEditar(producto) );
-        history.push(`/productos/editar/${producto.id}`)
-        
-    }
+    const { redireccionarEdicion, eliminarProducto } = useProducto();    
 
     return ( 
         <tr>
-            <td>{name}</td>
-            <td><span className="font-weight-bold">$ {price}</span></td>
+            <td>{nombre}</td>
+            <td><span className="font-weight-bold">$ {precio}</span></td>
             <td className="acciones">
                 <button 
                     onClick={()=>redireccionarEdicion(producto)}
@@ -54,11 +20,10 @@ const Producto = ({producto}) => {
                 <button 
                     type="button"
                     className="btn btn-danger"
-                    onClick={()=>eliminarProducto()}
+                    onClick={()=>eliminarProducto(id)}
                 >Eliminar</button>
             </td>
         </tr>
-
       );
 }
  

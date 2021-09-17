@@ -10,7 +10,8 @@ import {
   ELIMINAR_PRODUCTO_ERROR,
   OBTENER_PRODUCTO_EDITAR,
   EDITAR_PRODUCTO_EXITO,
-  EDITAR_PRODUCTO_ERROR
+  EDITAR_PRODUCTO_ERROR,
+  COMENZAR_EDICION_PRODUCTO
 } from "../types";
 
 import clienteAxios from "../config/axios";
@@ -50,7 +51,7 @@ export function descargarProductosAction(){
   return async (dispatch) => {
     dispatch(descargarProductos(true));
     try{
-      const response = await clienteAxios.get("products");
+      const response = await clienteAxios.get("productos");
       const products = response.data;
       dispatch(descargarProductosExito(products));
     }catch(error){
@@ -83,7 +84,7 @@ export function crearNuevoProductoAction(producto) {
 
     try {
       //insertar en la API
-      await clienteAxios.post("products",producto);
+      await clienteAxios.post("productos",producto);
       //si todo sale bien, actualizar el state
       dispatch(agregarProductoExito(producto));
       //Alerta
@@ -123,7 +124,7 @@ const agregarProductoError = (estado) => ({
 
 export function obtenerProductoEditar(producto){
   return dispatch =>{
-    dispatch( obtenerProductoAction(producto));
+    dispatch(obtenerProductoAction(producto));
   }
 }
 
@@ -135,7 +136,8 @@ const obtenerProductoAction = (producto)=>({
 export function editarProductoAction(producto){
   return async dispatch =>{
     try{
-      await clienteAxios.put(`products/${producto.id}`, producto)
+      dispatch(editarProducto());
+      await clienteAxios.put(`productos/${producto.id}`, producto)
       dispatch( editarProductoExito(producto) )
     }catch(error){
       dispatch( editarProductoError() )
@@ -143,11 +145,16 @@ export function editarProductoAction(producto){
   }
 }
 
+const editarProducto = () => ({
+  type: COMENZAR_EDICION_PRODUCTO,
+})
+
 const editarProductoExito = (producto)=>({
   type:EDITAR_PRODUCTO_EXITO,
   payload:producto
 })
 
 const editarProductoError = ()=>({
-  type: EDITAR_PRODUCTO_ERROR
+  type: EDITAR_PRODUCTO_ERROR,
+  payload:true
 })

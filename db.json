@@ -2,7 +2,7 @@
   "productos": [
     {
       "nombre": "tosecita",
-      "precio": "18",
+      "precio": "1234",
       "id": 13
     },
     {
@@ -11,13 +11,13 @@
       "id": 14
     },
     {
-      "nombre": "dafs",
-      "precio": 3,
+      "nombre": "cafe",
+      "precio": "5",
       "id": 15
     },
     {
-      "nombre": "ads",
-      "precio": 2,
+      "name": "",
+      "price": 0,
       "id": 16
     }
   ]

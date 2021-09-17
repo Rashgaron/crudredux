@@ -16,6 +16,7 @@ const Productos = () => {
     const productos = useSelector(state => state.productos.productos);
     const error = useSelector(state => state.productos.error)
     const cargando = useSelector(state => state.productos.loading);
+
     return(
         <>
             <h2 className="text-center my-5">Listado de Productos</h2>

@@ -1,28 +1,11 @@
-import React, {useParams, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import {editarProductoAction} from '../actions/productoActions'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
+import useEditarProducto from './useEditarProducto'
 const EditarProducto = () => {
     
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const productoEditar = useSelector((state) =>state.productos.productoeditar)
-
-    const [producto, guardarProducto] = useState(productoEditar)
-
-    const {nombre , precio} = producto;
-
-    const editarProducto = ()=>{
-        dispatch(editarProductoAction(producto));
-        history.push('/')
-    }
-
-    const onChangeText = (e)=>{
-        guardarProducto({
-            ...producto,
-            [e.target.name]:e.target.value
-        })
-    }
+    const { editarProducto, onChangeFormulario, producto } = useEditarProducto();
+    
+    if(!producto) return null;
+    const { nombre, precio } = producto;
     
     return (
         <div className="row justify-content-center">
@@ -34,7 +17,9 @@ const EditarProducto = () => {
                             Editar Producto
                         </h2>
 
-                        <form action="">
+                        <form
+                            onSubmit={editarProducto}
+                        >
                             <div className="form-group">
                                 <label>Nombre Producto</label>
                                 <input 
@@ -43,7 +28,7 @@ const EditarProducto = () => {
                                     name="nombre" 
                                     placeholder="Nombre Producto"
                                     value={nombre}
-                                    onChange={(e)=>onChangeText(e)}
+                                    onChange={onChangeFormulario}
                                     />
                             </div>
                             <div className="form-group">
@@ -54,17 +39,17 @@ const EditarProducto = () => {
                                     name="precio" 
                                     placeholder="Precio Producto"
                                     value={precio}
-                                    onChange={(e)=>onChangeText(e)}
+                                    onChange={onChangeFormulario}
                                     />
                             </div>
+
+                            <button 
+                                type="submit"
+                                className="btn btn-primary font-weight-bold text-uppercase
+                                d-block w-100"
+                            >Guardar Cambios</button>
                         </form>
 
-                        <button 
-                            type="submit"
-                            className="btn btn-primary font-weight-bold text-uppercase
-                            d-block w-100"
-                            onClick={()=>editarProducto()}
-                        >Editar</button>
                     </div>
                 </div>
             </div>
